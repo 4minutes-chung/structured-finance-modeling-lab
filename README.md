@@ -29,5 +29,4 @@ python3 real_data_scripts/04_calibrate_assumptions.py \
   --out-yaml config/scenarios_calibrated.yaml
 ```
 
-## Notes
-- This is a learning and interview baseline, not a production model.
+
