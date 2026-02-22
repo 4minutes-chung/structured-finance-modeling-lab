@@ -1,0 +1,97 @@
+version: 0.1.0
+window_months: 180
+
+source_urls:
+  fred_mortgage_rate: https://fred.stlouisfed.org/series/MORTGAGE30US
+  fred_unemployment_rate: https://fred.stlouisfed.org/series/UNRATE
+  fhfa_hpi_monthly: https://www.fhfa.gov/hpi/download/monthly/hpi_master.csv
+
+percentile_targets:
+  Base:
+    mortgage_rate: 0.50
+    unemployment_rate: 0.50
+    hpi_yoy: 0.50
+  Mild_Stress:
+    mortgage_rate: 0.75
+    unemployment_rate: 0.75
+    hpi_yoy: 0.25
+  Severe_Stress:
+    mortgage_rate: 0.90
+    unemployment_rate: 0.90
+    hpi_yoy: 0.10
+
+base_parameters:
+  v1:
+    cpr_annual: 0.08
+    cdr_annual: 0.015
+    severity: 0.25
+  v2:
+    cpr_annual: 0.08
+    severity: 0.25
+    roll_to_30_annual: 0.04
+    default_from_60_annual: 0.10
+    cure_30_monthly: 0.35
+    roll_30_to_60_monthly: 0.20
+    cure_60_monthly: 0.12
+
+# Features are computed as:
+# mortgage_rate_pp = mortgage_rate_scenario - mortgage_rate_base
+# unemployment_rate_pp = unemployment_rate_scenario - unemployment_rate_base
+# hpi_yoy_pp = (hpi_yoy_scenario - hpi_yoy_base) * 100
+sensitivities:
+  v1:
+    cpr_annual:
+      mortgage_rate_pp: -0.0040
+      unemployment_rate_pp: -0.0030
+      hpi_yoy_pp: 0.0020
+    cdr_annual:
+      mortgage_rate_pp: 0.0015
+      unemployment_rate_pp: 0.0030
+      hpi_yoy_pp: -0.0012
+    severity:
+      mortgage_rate_pp: 0.0030
+      unemployment_rate_pp: 0.0040
+      hpi_yoy_pp: -0.0020
+  v2:
+    cpr_annual:
+      mortgage_rate_pp: -0.0040
+      unemployment_rate_pp: -0.0030
+      hpi_yoy_pp: 0.0020
+    severity:
+      mortgage_rate_pp: 0.0030
+      unemployment_rate_pp: 0.0040
+      hpi_yoy_pp: -0.0020
+    roll_to_30_annual:
+      mortgage_rate_pp: 0.0040
+      unemployment_rate_pp: 0.0060
+      hpi_yoy_pp: -0.0030
+    default_from_60_annual:
+      mortgage_rate_pp: 0.0050
+      unemployment_rate_pp: 0.0080
+      hpi_yoy_pp: -0.0040
+    cure_30_monthly:
+      mortgage_rate_pp: -0.0100
+      unemployment_rate_pp: -0.0150
+      hpi_yoy_pp: 0.0060
+    roll_30_to_60_monthly:
+      mortgage_rate_pp: 0.0070
+      unemployment_rate_pp: 0.0100
+      hpi_yoy_pp: -0.0050
+    cure_60_monthly:
+      mortgage_rate_pp: -0.0080
+      unemployment_rate_pp: -0.0120
+      hpi_yoy_pp: 0.0050
+
+bounds:
+  v1:
+    cpr_annual: [0.01, 0.25]
+    cdr_annual: [0.005, 0.12]
+    severity: [0.15, 0.75]
+  v2:
+    cpr_annual: [0.01, 0.25]
+    severity: [0.15, 0.75]
+    roll_to_30_annual: [0.01, 0.30]
+    default_from_60_annual: [0.05, 0.60]
+    cure_30_monthly: [0.05, 0.60]
+    roll_30_to_60_monthly: [0.05, 0.60]
+    cure_60_monthly: [0.02, 0.40]
