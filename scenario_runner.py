@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 One-command sandbox run for the RMBS model.
 
@@ -541,8 +541,8 @@ def main() -> int:
     (output_root / "LATEST_RUN_PATH").write_text(str(sb), encoding="utf-8")
 
     required_scripts = [
-        root / "build_rmbs_workbook.py",
-        root / "rmbs_python_validation.py",
+        root / "build_waterfall_workbook.py",
+        root / "rmbs_validation_engine.py",
         root / "rmbs_v2_engine.py",
         root / "rmbs_excel_python_compare.py",
     ]
@@ -567,9 +567,9 @@ def main() -> int:
     results: list[CmdResult] = []
     build_cmd = [
         sys.executable,
-        str(root / "build_rmbs_workbook.py"),
+        str(root / "build_waterfall_workbook.py"),
         "--output-path",
-        str(sb / "rmbs_interview_model.xlsx"),
+        str(sb / "rmbs_waterfall_model.xlsx"),
     ]
     if scenario_config_path:
         build_cmd.extend(["--scenario-config", str(scenario_config_path)])
@@ -583,7 +583,7 @@ def main() -> int:
     )
     v1_cmd = [
         sys.executable,
-        str(root / "rmbs_python_validation.py"),
+        str(root / "rmbs_validation_engine.py"),
         "--out-report",
         str(paths["out_v1"] / "rmbs_validation_report.md"),
         "--out-summary-csv",
@@ -626,7 +626,7 @@ def main() -> int:
         if r.returncode != 0:
             raise RuntimeError(f"Step failed: {r.name}. See log: {r.log_path}")
 
-    workbook_path = sb / "rmbs_interview_model.xlsx"
+    workbook_path = sb / "rmbs_waterfall_model.xlsx"
     if args.automate_excel:
         excel_log = paths["logs"] / "excel_export_automation.log"
         with excel_log.open("w", encoding="utf-8") as log:
@@ -725,3 +725,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+

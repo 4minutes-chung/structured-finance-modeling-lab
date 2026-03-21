@@ -1,22 +1,25 @@
-# RMBS Modelling vA_1
+# RMBS Waterfall Modeling Lab
 
-Simple RMBS modelling baseline for portfolio use.
+Excel + Python structured-finance modeling project focused on RMBS cash-flow waterfalls, tranche behavior, scenario stress testing, and independent output validation.
+
+This is a research / interview-style modeling project, not a production securitization engine. The goal is to demonstrate transparent waterfall logic, validation discipline, and structured-credit analysis.
 
 ## What is included
-- `build_rmbs_workbook.py`: creates `rmbs_interview_model.xlsx`
-- `rmbs_python_validation.py`: v1 RMBS cashflow and waterfall validation
+- `build_waterfall_workbook.py`: creates `rmbs_waterfall_model.xlsx`
+- `rmbs_validation_engine.py`: v1 RMBS cash-flow and waterfall validation
 - `rmbs_v2_engine.py`: v2 delinquency-state and trigger model
 - `rmbs_excel_python_compare.py`: compares Excel export with Python monthly output
+- `scenario_runner.py`: sandbox runner for workbook generation, scenario runs, and validation outputs
 - `scenario_config.py`: shared scenario config loader
 - `real_data_scripts/`: public-data pull and calibration scripts
 - `config/`: calibration and scenario YAML files
 - `data/processed/`: sample processed macro panel
-- `rmbs_interview_model.xlsx`: workbook snapshot
+- `rmbs_waterfall_model.xlsx`: workbook snapshot
 
 ## Quick run
 ```bash
-python3 build_rmbs_workbook.py
-python3 rmbs_python_validation.py
+python3 build_waterfall_workbook.py
+python3 rmbs_validation_engine.py
 python3 rmbs_v2_engine.py
 ```
 

@@ -659,7 +659,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Build RMBS workbook.")
     parser.add_argument(
         "--output-path",
-        default="rmbs_interview_model.xlsx",
+        default="rmbs_waterfall_model.xlsx",
         help="Output workbook path.",
     )
     parser.add_argument(
