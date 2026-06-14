@@ -1,4 +1,4 @@
-# Production Gap
+# Limitations
 
 This project shows the mechanics of an RMBS cash-flow model and the checks
 around it. It is useful for explaining how the model is built and tested. It is
@@ -13,9 +13,9 @@ not a model for rating, investment, or regulatory use.
 - Local sandbox runner with scorecards and isolated run outputs.
 - Clear non-production limitations and data-source documentation.
 
-## Main Production Gaps
+## Main Gaps
 
-| Area | Current State | Production Gap |
+| Area | Current State | Gap |
 |---|---|---|
 | Collateral data | Representative pool and public macro/HPI calibration | Loan-level historical performance data and servicer tapes |
 | Deal structure | Simplified tranche waterfall | Deal-document covenant parsing and transaction-specific waterfalls |
@@ -35,7 +35,7 @@ A plain description is:
 
 Do not describe it as a rating model, pricing model, or production credit engine.
 
-## Highest-Value Next Steps
+## Possible Extensions
 
 1. Automate Excel/Python reconciliation with `--automate-excel` and retain the
    generated scorecard as local evidence.

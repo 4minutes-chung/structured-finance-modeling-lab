@@ -47,7 +47,7 @@ Rules:
 - Interest priority: A -> B (Equity gets residual).
 - Loss allocation (simple): Equity -> B -> A by remaining balance.
 
-## 5) Governance Guardrails
+## 5) Validation Checks
 
 - Every model input must live on `Inputs` or `Scenarios` tab.
 - No hardcoded rates inside monthly cashflow formulas.

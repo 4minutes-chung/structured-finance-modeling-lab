@@ -30,7 +30,9 @@ a production credit engine.
 ├── scenario_config.py              # scenario config loader
 ├── docs/
 │   ├── ASSUMPTIONS.md
-│   └── PRODUCTION_GAP.md
+│   └── LIMITATIONS.md
+├── outputs/
+│   └── rmbs_model.xlsx             # sample generated workbook
 ├── real_data_lab/
 │   ├── config/
 │   ├── data/
@@ -43,6 +45,9 @@ Generated run outputs are intentionally ignored by Git:
 
 - `.sandbox_runs/`
 - `real_data_lab/runs/`
+
+The repo includes one sample workbook at `outputs/rmbs_model.xlsx` so the model
+output can be inspected without running the scripts first.
 
 ## Quick Run
 
@@ -94,4 +99,4 @@ python3 run_sandbox_validation.py \
 
 This repo is best read as a transparent modeling exercise. The missing pieces
 for real institutional use are documented in
-[docs/PRODUCTION_GAP.md](docs/PRODUCTION_GAP.md).
+[docs/LIMITATIONS.md](docs/LIMITATIONS.md).
