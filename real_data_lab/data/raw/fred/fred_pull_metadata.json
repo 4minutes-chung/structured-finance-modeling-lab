@@ -1,0 +1,17 @@
+{
+  "pulled_at_utc": "2026-02-16T06:21:05.780841+00:00",
+  "series": [
+    {
+      "series_id": "MORTGAGE30US",
+      "label": "mortgage_rate_weekly",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=MORTGAGE30US",
+      "path": "real_data_lab/data/raw/fred/MORTGAGE30US.csv"
+    },
+    {
+      "series_id": "UNRATE",
+      "label": "unemployment_rate_monthly",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=UNRATE",
+      "path": "real_data_lab/data/raw/fred/UNRATE.csv"
+    }
+  ]
+}

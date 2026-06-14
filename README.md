@@ -1,35 +1,97 @@
-# RMBS Waterfall Modeling Lab
+# RMBS Cash-Flow Prototype
 
-Excel + Python structured-finance modeling project focused on RMBS cash-flow waterfalls, tranche behavior, scenario stress testing, and independent output validation.
+This repository contains a transparent residential mortgage-backed securities
+(RMBS) cash-flow prototype. It combines a Python-generated workbook, independent
+Python validation, a second-stage delinquency/trigger engine, and a public-data
+scenario calibration workflow.
 
-This is a research / interview-style modeling project, not a production securitization engine. The goal is to demonstrate transparent waterfall logic, validation discipline, and structured-credit analysis.
+The project is intended as a portfolio-quality structured finance model
+prototype. It is not a production rating model.
 
-## What is included
-- `build_waterfall_workbook.py`: creates `rmbs_waterfall_model.xlsx`
-- `rmbs_validation_engine.py`: v1 RMBS cash-flow and waterfall validation
-- `rmbs_v2_engine.py`: v2 delinquency-state and trigger model
-- `rmbs_excel_python_compare.py`: compares Excel export with Python monthly output
-- `scenario_runner.py`: sandbox runner for workbook generation, scenario runs, and validation outputs
-- `scenario_config.py`: shared scenario config loader
-- `real_data_scripts/`: public-data pull and calibration scripts
-- `config/`: calibration and scenario YAML files
-- `data/processed/`: sample processed macro panel
-- `rmbs_waterfall_model.xlsx`: workbook snapshot
+## What It Does
 
-## Quick run
-```bash
-python3 build_waterfall_workbook.py
-python3 rmbs_validation_engine.py
-python3 rmbs_v2_engine.py
+- Builds an RMBS workbook with inputs, pool cash flows, tranche waterfall,
+  integrity checks, and a compare export sheet.
+- Runs an independent Python v1 model for cash-flow and allocation validation.
+- Runs a v2 model with delinquency states and simplified trigger behavior.
+- Calibrates stress scenarios from public FRED mortgage/unemployment data and
+  FHFA HPI data.
+- Produces local run folders with scorecards and validation artifacts.
+
+## Repository Layout
+
+```text
+.
+├── build_rmbs_workbook.py          # workbook builder
+├── rmbs_python_validation.py       # v1 cash-flow validator
+├── rmbs_v2_engine.py               # delinquency + trigger engine
+├── rmbs_excel_python_compare.py    # workbook export vs Python reconciliation
+├── run_sandbox_validation.py       # one-command local runner
+├── scenario_config.py              # scenario config loader
+├── docs/
+│   ├── ASSUMPTIONS.md
+│   └── PRODUCTION_GAP.md
+├── real_data_lab/
+│   ├── config/
+│   ├── data/
+│   ├── docs/
+│   └── scripts/
+└── tests/
 ```
 
-## Real-data calibration run
+Generated run outputs are intentionally ignored by Git:
+
+- `.sandbox_runs/`
+- `real_data_lab/runs/`
+
+## Quick Run
+
 ```bash
-python3 real_data_scripts/04_calibrate_assumptions.py \
-  --panel-csv data/processed/macro_panel_monthly.csv \
-  --rules-yaml config/calibration_rules.yaml \
-  --template-yaml config/scenario_template.yaml \
-  --out-yaml config/scenarios_calibrated.yaml
+python3 run_sandbox_validation.py --skip-latex --run-id quick_check
 ```
 
+Run with the calibrated public-data scenario config:
 
+```bash
+python3 run_sandbox_validation.py \
+  --skip-latex \
+  --scenario-config real_data_lab/config/scenarios_calibrated.yaml \
+  --output-root real_data_lab/runs \
+  --run-id quick_realdata
+```
+
+Run smoke tests:
+
+```bash
+python3 -m unittest discover -s tests
+```
+
+## Excel Reconciliation
+
+The no-Excel run validates model identities and stress behavior but does not
+complete workbook reconciliation. To compare Excel workbook outputs against
+Python outputs on macOS with Microsoft Excel installed:
+
+```bash
+python3 run_sandbox_validation.py \
+  --automate-excel \
+  --skip-latex \
+  --run-id excel_compare_check
+```
+
+For calibrated scenarios:
+
+```bash
+python3 run_sandbox_validation.py \
+  --automate-excel \
+  --skip-latex \
+  --scenario-config real_data_lab/config/scenarios_calibrated.yaml \
+  --output-root real_data_lab/runs \
+  --run-id excel_compare_realdata
+```
+
+## Scope
+
+This is a prototype for demonstrating RMBS cash-flow mechanics, stress testing,
+validation discipline, and public-data scenario calibration. The production gap
+is documented in [docs/PRODUCTION_GAP.md](docs/PRODUCTION_GAP.md).

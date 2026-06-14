@@ -465,7 +465,7 @@ def write_report(
     lines.append("## Interpretation")
     lines.append("")
     lines.append("- v2 adds delinquency migration and trigger-based cashflow behavior to improve realism.")
-    lines.append("- This remains an interview model and is not calibrated to production-quality performance data.")
+    lines.append("- This remains a prototype model and is not calibrated to production-quality performance data.")
 
     report_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
