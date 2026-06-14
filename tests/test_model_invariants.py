@@ -1,13 +1,13 @@
 import unittest
 
-from rmbs_python_validation import ModelParams, Scenario, run_scenario, scenario_monotonicity
-from rmbs_v2_engine import (
+from model.validate_cashflows import ModelParams, Scenario, run_scenario, scenario_monotonicity
+from model.delinquency_trigger_model import (
     ModelParams as ModelParamsV2,
     ScenarioV2,
     monotonicity_ok,
     run_scenario_v2,
 )
-from scenario_config import DEFAULT_V1_SCENARIOS, DEFAULT_V2_SCENARIOS, load_scenario_bundle
+from model.scenario_config import DEFAULT_V1_SCENARIOS, DEFAULT_V2_SCENARIOS, load_scenario_bundle
 
 
 class ScenarioConfigTests(unittest.TestCase):

@@ -8,7 +8,7 @@ __pycache__/
 
 # Local generated model runs
 .sandbox_runs/
-real_data_lab/runs/
+data_calibration/runs/
 private_notes/
 
 # Excel temp/output artifacts

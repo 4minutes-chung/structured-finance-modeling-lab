@@ -22,14 +22,14 @@ This subfolder calibrates RMBS scenarios with public data while keeping the mode
 Run from the repo root:
 
 ```bash
-python3 real_data_lab/scripts/01_pull_fred.py
-python3 real_data_lab/scripts/02_pull_fhfa.py
-python3 real_data_lab/scripts/03_prepare_panel.py
-python3 real_data_lab/scripts/04_calibrate_assumptions.py
-python3 run_sandbox_validation.py \
+python3 data_calibration/scripts/01_pull_fred.py
+python3 data_calibration/scripts/02_pull_fhfa.py
+python3 data_calibration/scripts/03_prepare_panel.py
+python3 data_calibration/scripts/04_calibrate_assumptions.py
+python3 model/run_validation.py \
   --skip-latex \
-  --scenario-config real_data_lab/config/scenarios_calibrated.yaml \
-  --output-root real_data_lab/runs
+  --scenario-config data_calibration/config/scenarios_calibrated.yaml \
+  --output-root data_calibration/runs
 ```
 
 ## Expected Key Outputs

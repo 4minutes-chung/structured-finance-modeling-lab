@@ -54,4 +54,4 @@ Feature definitions:
 ## What This Gives You
 - Real-data anchored scenario values.
 - Same explainable v1/v2 model mechanics.
-- Reproducible run outputs under `real_data_lab/runs/`.
+- Reproducible run outputs under `data_calibration/runs/`.

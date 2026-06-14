@@ -13,7 +13,10 @@ from openpyxl.styles import Font
 from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.datavalidation import DataValidation
 
-from scenario_config import load_scenario_bundle
+try:
+    from .scenario_config import load_scenario_bundle
+except ImportError:  # pragma: no cover - direct script execution
+    from scenario_config import load_scenario_bundle
 
 
 def set_header(ws, row: int, headers: list[str]) -> None:
@@ -598,7 +601,7 @@ def build_workbook(output_path: Path, scenario_bundle: dict | None = None) -> No
     ws_export["A365"] = "1) Recalculate workbook in Excel."
     ws_export["A366"] = "2) Keep one active scenario in Inputs!B12."
     ws_export["A367"] = "3) Save CompareExport sheet as CSV."
-    ws_export["A368"] = "4) Run rmbs_excel_python_compare.py with that CSV."
+    ws_export["A368"] = "4) Run model/compare_excel_python.py with that CSV."
 
     # Formatting
     for ws in [ws_inputs, ws_pool, ws_wf, ws_scen, ws_checks, ws_scen_v2, ws_pool_v2, ws_wf_v2, ws_checks_v2, ws_export]:

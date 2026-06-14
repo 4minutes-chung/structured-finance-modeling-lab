@@ -484,8 +484,8 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Run full sandbox validation and scorecard.")
     parser.add_argument(
         "--root",
-        default=str(Path(__file__).resolve().parent),
-        help="Project root path (default: script directory).",
+        default=str(Path(__file__).resolve().parents[1]),
+        help="Project root path (default: repository root).",
     )
     parser.add_argument("--run-id", default="", help="Optional run id. Default: timestamp.")
     parser.add_argument(
@@ -513,6 +513,7 @@ def main() -> int:
     args = parser.parse_args()
 
     root = Path(args.root).resolve()
+    model_dir = root / "model"
     output_root = (
         Path(args.output_root).expanduser().resolve()
         if args.output_root
@@ -540,10 +541,10 @@ def main() -> int:
     (output_root / "LATEST_RUN_PATH").write_text(str(sb), encoding="utf-8")
 
     required_scripts = [
-        root / "build_rmbs_workbook.py",
-        root / "rmbs_python_validation.py",
-        root / "rmbs_v2_engine.py",
-        root / "rmbs_excel_python_compare.py",
+        model_dir / "build_workbook.py",
+        model_dir / "validate_cashflows.py",
+        model_dir / "delinquency_trigger_model.py",
+        model_dir / "compare_excel_python.py",
     ]
     ensure_files(required_scripts)
 
@@ -566,7 +567,7 @@ def main() -> int:
     results: list[CmdResult] = []
     build_cmd = [
         sys.executable,
-        str(root / "build_rmbs_workbook.py"),
+        str(model_dir / "build_workbook.py"),
         "--output-path",
         str(sb / "rmbs_model.xlsx"),
     ]
@@ -582,7 +583,7 @@ def main() -> int:
     )
     v1_cmd = [
         sys.executable,
-        str(root / "rmbs_python_validation.py"),
+        str(model_dir / "validate_cashflows.py"),
         "--out-report",
         str(paths["out_v1"] / "rmbs_validation_report.md"),
         "--out-summary-csv",
@@ -602,7 +603,7 @@ def main() -> int:
     )
     v2_cmd = [
         sys.executable,
-        str(root / "rmbs_v2_engine.py"),
+        str(model_dir / "delinquency_trigger_model.py"),
         "--out-report",
         str(paths["out_v2"] / "rmbs_v2_validation_report.md"),
         "--out-summary-csv",
@@ -648,7 +649,7 @@ def main() -> int:
             result = run_cmd(
                 [
                     sys.executable,
-                    str(root / "rmbs_excel_python_compare.py"),
+                    str(model_dir / "compare_excel_python.py"),
                     "--excel-csv",
                     str(export_csv),
                     "--python-csv",

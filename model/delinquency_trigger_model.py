@@ -18,7 +18,10 @@ from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 
-from scenario_config import load_scenario_bundle
+try:
+    from .scenario_config import load_scenario_bundle
+except ImportError:  # pragma: no cover - direct script execution
+    from scenario_config import load_scenario_bundle
 
 
 @dataclass(frozen=True)

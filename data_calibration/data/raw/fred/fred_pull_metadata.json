@@ -5,13 +5,13 @@
       "series_id": "MORTGAGE30US",
       "label": "mortgage_rate_weekly",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=MORTGAGE30US",
-      "path": "real_data_lab/data/raw/fred/MORTGAGE30US.csv"
+      "path": "data_calibration/data/raw/fred/MORTGAGE30US.csv"
     },
     {
       "series_id": "UNRATE",
       "label": "unemployment_rate_monthly",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=UNRATE",
-      "path": "real_data_lab/data/raw/fred/UNRATE.csv"
+      "path": "data_calibration/data/raw/fred/UNRATE.csv"
     }
   ]
 }

@@ -4,7 +4,7 @@ Date: 2026-02-12
 
 Scope: simplified RMBS prototype assumptions for the v1 deterministic model.
 The v2 engine extends this with delinquency and trigger parameters defined in
-`scenario_config.py` and optional calibrated scenario YAML files.
+`model/scenario_config.py` and optional calibrated scenario YAML files.
 
 ## 1) Pool Setup
 

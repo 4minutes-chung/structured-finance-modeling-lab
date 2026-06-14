@@ -22,18 +22,19 @@ a production credit engine.
 
 ```text
 .
-├── build_rmbs_workbook.py          # workbook builder
-├── rmbs_python_validation.py       # v1 cash-flow validator
-├── rmbs_v2_engine.py               # delinquency + trigger engine
-├── rmbs_excel_python_compare.py    # workbook export vs Python reconciliation
-├── run_sandbox_validation.py       # one-command local runner
-├── scenario_config.py              # scenario config loader
+├── model/
+│   ├── build_workbook.py           # workbook builder
+│   ├── validate_cashflows.py       # v1 cash-flow validator
+│   ├── delinquency_trigger_model.py
+│   ├── compare_excel_python.py
+│   ├── run_validation.py           # one-command local runner
+│   └── scenario_config.py
 ├── docs/
 │   ├── ASSUMPTIONS.md
 │   └── LIMITATIONS.md
 ├── outputs/
 │   └── rmbs_model.xlsx             # sample generated workbook
-├── real_data_lab/
+├── data_calibration/
 │   ├── config/
 │   ├── data/
 │   ├── docs/
@@ -44,7 +45,7 @@ a production credit engine.
 Generated run outputs are intentionally ignored by Git:
 
 - `.sandbox_runs/`
-- `real_data_lab/runs/`
+- `data_calibration/runs/`
 
 The repo includes one sample workbook at `outputs/rmbs_model.xlsx` so the model
 output can be inspected without running the scripts first.
@@ -52,16 +53,16 @@ output can be inspected without running the scripts first.
 ## Quick Run
 
 ```bash
-python3 run_sandbox_validation.py --skip-latex --run-id quick_check
+python3 model/run_validation.py --skip-latex --run-id quick_check
 ```
 
 Run with the calibrated public-data scenario config:
 
 ```bash
-python3 run_sandbox_validation.py \
+python3 model/run_validation.py \
   --skip-latex \
-  --scenario-config real_data_lab/config/scenarios_calibrated.yaml \
-  --output-root real_data_lab/runs \
+  --scenario-config data_calibration/config/scenarios_calibrated.yaml \
+  --output-root data_calibration/runs \
   --run-id quick_realdata
 ```
 
@@ -78,7 +79,7 @@ complete workbook reconciliation. To compare Excel workbook outputs against
 Python outputs on macOS with Microsoft Excel installed:
 
 ```bash
-python3 run_sandbox_validation.py \
+python3 model/run_validation.py \
   --automate-excel \
   --skip-latex \
   --run-id excel_compare_check
@@ -87,11 +88,11 @@ python3 run_sandbox_validation.py \
 For calibrated scenarios:
 
 ```bash
-python3 run_sandbox_validation.py \
+python3 model/run_validation.py \
   --automate-excel \
   --skip-latex \
-  --scenario-config real_data_lab/config/scenarios_calibrated.yaml \
-  --output-root real_data_lab/runs \
+  --scenario-config data_calibration/config/scenarios_calibrated.yaml \
+  --output-root data_calibration/runs \
   --run-id excel_compare_realdata
 ```
 
