@@ -1,9 +1,8 @@
 # Production Gap
 
-This project is a structured finance modeling prototype. It is useful for
-demonstrating model design, cash-flow mechanics, validation controls, and
-scenario calibration. It is not a production model for rating, investment, or
-regulatory use.
+This project shows the mechanics of an RMBS cash-flow model and the checks
+around it. It is useful for explaining how the model is built and tested. It is
+not a model for rating, investment, or regulatory use.
 
 ## Current Strengths
 
@@ -27,16 +26,14 @@ regulatory use.
 | Governance | Local scorecard and documentation | Versioned model inventory, approvals, audit archive, signoff workflow |
 | Reporting | Local reports and CSV outputs | Standardized model risk and regulatory reporting packs |
 
-## Practical Interpretation
+## How To Describe It
 
-The project is complete enough to present as a portfolio prototype if framed as:
+A plain description is:
 
-> A transparent RMBS cash-flow prototype with validation checks, stress
-> scenarios, and public-data calibration.
+> An RMBS cash-flow model with tranche waterfalls, stress scenarios, validation
+> checks, and public-data scenario calibration.
 
-It should not be framed as:
-
-> A production-grade RMBS rating or investment model.
+Do not describe it as a rating model, pricing model, or production credit engine.
 
 ## Highest-Value Next Steps
 

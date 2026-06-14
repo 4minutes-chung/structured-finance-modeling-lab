@@ -1,12 +1,12 @@
 # RMBS Cash-Flow Prototype
 
-This repository contains a transparent residential mortgage-backed securities
-(RMBS) cash-flow prototype. It combines a Python-generated workbook, independent
-Python validation, a second-stage delinquency/trigger engine, and a public-data
-scenario calibration workflow.
+This repository contains a residential mortgage-backed securities (RMBS)
+cash-flow model built to show the mechanics: pool cash flows, tranche
+waterfalls, stress scenarios, validation checks, and a simple public-data
+calibration workflow.
 
-The project is intended as a portfolio-quality structured finance model
-prototype. It is not a production rating model.
+It is intentionally simplified. It is not trying to be a rating-agency model or
+a production credit engine.
 
 ## What It Does
 
@@ -92,6 +92,6 @@ python3 run_sandbox_validation.py \
 
 ## Scope
 
-This is a prototype for demonstrating RMBS cash-flow mechanics, stress testing,
-validation discipline, and public-data scenario calibration. The production gap
-is documented in [docs/PRODUCTION_GAP.md](docs/PRODUCTION_GAP.md).
+This repo is best read as a transparent modeling exercise. The missing pieces
+for real institutional use are documented in
+[docs/PRODUCTION_GAP.md](docs/PRODUCTION_GAP.md).
