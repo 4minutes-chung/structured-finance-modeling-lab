@@ -33,7 +33,7 @@ a production credit engine.
 │   ├── ASSUMPTIONS.md
 │   └── LIMITATIONS.md
 ├── outputs/
-│   └── rmbs_model.xlsx             # sample generated workbook
+│   └── rmbs_model_20260615.xlsx    # sample generated workbook
 ├── data_calibration/
 │   ├── config/
 │   ├── data/
@@ -47,8 +47,8 @@ Generated run outputs are intentionally ignored by Git:
 - `.sandbox_runs/`
 - `data_calibration/runs/`
 
-The repo includes one sample workbook at `outputs/rmbs_model.xlsx` so the model
-output can be inspected without running the scripts first.
+The repo includes one sample workbook at `outputs/rmbs_model_20260615.xlsx` so
+the model output can be inspected without running the scripts first.
 
 ## Quick Run
 

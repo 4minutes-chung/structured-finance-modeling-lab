@@ -2,7 +2,7 @@
 """
 Compare Excel-exported monthly outputs against Python monthly outputs.
 
-Excel input should come from the `CompareExport` tab in `rmbs_model.xlsx`
+Excel input should come from the `CompareExport` tab in the generated workbook.
 after recalculation and CSV export.
 """
 

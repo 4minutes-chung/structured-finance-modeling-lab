@@ -15,7 +15,7 @@ private_notes/
 ~$*.xlsx
 *.xlsx
 !outputs/
-!outputs/rmbs_model.xlsx
+!outputs/rmbs_model_20260615.xlsx
 compare_export_*.csv
 excel_python_comparison_report.md
 excel_python_diffs.csv
